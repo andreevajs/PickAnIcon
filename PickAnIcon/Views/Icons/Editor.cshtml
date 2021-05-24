@@ -38,7 +38,7 @@
             @using (Html.BeginForm("Editor", "Icons", FormMethod.Post, Model))
             {
                 <input type="hidden" value="@Model.Id" name="id" class="btn btn-outline-primary" />
-                var rowSize = ViewBag.PartsCount;
+                var rowSize = int.Parse(ViewBag.PartsCount);
                 for (int i = 0; i <= ViewBag.Parts?.Count / rowSize; i++)
                 {
                     <div class="card-deck">
