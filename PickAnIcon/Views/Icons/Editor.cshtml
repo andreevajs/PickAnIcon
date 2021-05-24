@@ -1,0 +1,66 @@
+﻿@model IconViewModel
+@{
+    <div class="container">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", })
+
+        <div class="card" style="padding: 50px; align-items: center;">
+            <div style="position: relative; height: 200px; width:200px; margin: 20px;">
+                @foreach (var part in Model.Parts)
+                {
+                    <img src="~/res/data/parts/@part.FileName" style="height: 100%; width: 100%; position: absolute;">
+                }
+            </div>
+
+            <div class="card-deck">
+
+                @foreach (var part in Model.Parts)
+                {
+                    <div class="card mb-2" style="max-width: 320px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-6">
+                                <img src="~/res/data/parts/@part.FileName" class="card-img" alt="@part.FileName" width="128" height="128">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">@part.FileName</h5>
+                                    <p class="card-text">
+                                        Part info (id: @part.Id)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card" style="padding: 50px; align-items: center;">
+            @using (Html.BeginForm("Editor", "Icons", FormMethod.Post, Model))
+            {
+                <input type="hidden" value="@Model.Id" name="id" class="btn btn-outline-primary" />
+                var rowSize = ViewBag.PartsCount;
+                for (int i = 0; i <= ViewBag.Parts?.Count / rowSize; i++)
+                {
+                    <div class="card-deck">
+                        @for (int x = 0; x < rowSize; x++)
+                        {
+                            var index = rowSize * i + x;
+                            if (index >= ViewBag.Parts.Count) break;
+                            var part = ViewBag.Parts[index];
+                                <div class="card mb-2 text-center">
+                                <div class="card-body">
+                                    <img src="~/res/data/parts/@part.FileName" alt="icon" height="100" style="margin: 20px;">
+                                </div>
+                                <div class="card-footer" style="align-items:center">
+                                    @Html.CheckBox("parts", Model.Parts.Find(p => p.PartId == part.Id) != null, new { value = @part.Id.ToString() })
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
+            }
+        </div>
+    </div>
+}

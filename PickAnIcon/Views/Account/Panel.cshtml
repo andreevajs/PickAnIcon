@@ -1,0 +1,20 @@
+﻿@model PickAnIcon.Models.PanelViewModel
+<div class="card">
+    <h1 class="display-4">
+        Личный кабинет
+    </h1>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Логин</th>
+                    <td>@Model.Username</td>
+                </tr>
+                <tr>
+                    <th>Мои иконки</th>
+                    <td>@Model.IconsCount (<a href="/Icons/My">посмотреть</a>), <a href="/Icons/Editor">создать иконку</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

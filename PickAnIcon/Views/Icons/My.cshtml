@@ -1,0 +1,29 @@
+﻿@model List<IconViewModel>
+@{
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        @if (Model == null)
+        {
+            <p>You dont have icons yet</p>
+        }
+        else
+        {
+            @foreach (var icon in Model)
+            {
+                <div class="col">
+                    <div class="card" >
+                        <div style="position: relative; align-items: center; height: 200px; width:200px">
+                            @foreach (var part in icon.Parts?.OrderBy(p => p.Layer))
+                            {
+                                <img src="~/res/data/parts/@part.FileName" style="height: 100%; width: 100%; position: absolute;">
+                            }
+                        </div>
+                        <div class="card-footer text-muted">
+                            @icon.Name
+                            <a href="/Icons/Editor/@icon.Id">редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}

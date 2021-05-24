@@ -1,0 +1,24 @@
+﻿@model SignInViewModel
+@{
+    <h1 class="display-4">Sign In</h1>
+    <form asp-controller="Account" asp-action="SignIn" method="post" style="max-width: 400px;">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Username" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", type = "password", placeholder = "Password" })
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-raised btn-dark" value="Continue">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignUp">Sign Up</a>
+        </div>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                @ViewBag.Error
+            </div>
+        }
+    </form>
+}

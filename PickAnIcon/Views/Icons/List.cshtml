@@ -1,0 +1,17 @@
+﻿@model List<IconViewModel>
+@{
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        @foreach (var icon in Model)
+        {
+            <div class="col">
+                <div class="card" style="position: relative; align-items: center;">
+                        <img src="~/res/data/parts/bg_circle_half.svg" alt="icon" height="100" style="margin: 20px;">
+                        <img src="~/res/data/parts/db.svg" alt="icon" height="100" style="margin: 20px; position: absolute;">
+                    <div class="card-footer text-muted">
+                        @icon.Name
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
